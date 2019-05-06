@@ -1,5 +1,5 @@
 # Adversarial YOLO
-This repository is based on the marvis YOLOv2 inplementation: https://github.com/marvis/darknet
+This repository is based on the marvis YOLOv2 inplementation: https://github.com/marvis/pytorch-yolo2
 
 This work corresponds to the following paper: https://arxiv.org/abs/1904.08653:
 ```
