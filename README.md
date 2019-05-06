@@ -35,9 +35,6 @@ mv INRIAPerson inria
 cp -r yolo-labels inria/Train/pos/
 ```
 
-Generate labels:
-
-
 # Generating a patch
 `patch_config.py` contains configuration of different experiments. You can design your own experiment by inheriting from the base `BaseConfig` class or an existing experiment. `ReproducePaperObj` reproduces the patch that minimizes object score from the paper (With a lower batch size to fit on a desktop GPU).
 
