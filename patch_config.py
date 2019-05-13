@@ -119,7 +119,7 @@ class ReproducePaperObj(BaseConfig):
         self.patch_name = 'ObjectOnlyPaper'
         self.max_tv = 0.165
 
-        self.loss_target = lambda obj, cls: cls
+        self.loss_target = lambda obj, cls: obj
 
 
 patch_configs = {
