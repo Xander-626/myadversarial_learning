@@ -11,5 +11,5 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.0 virtualenv at ~/.virtualenvs/p36" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="adversarial-yolo" project-jdk-type="Python SDK" />
 </project>

@@ -42,3 +42,38 @@ You can generate this patch by running:
 ```
 python train_patch.py paper_obj
 ```
+
+
+## macOS / Apple silicon training
+
+The local training entry point now supports current PyTorch on MPS, CPU, and CUDA.
+The original Python 3.6/CUDA setup above is historical. This adaptation has been
+smoke-tested with Python 3.13, PyTorch 2.14.1, torchvision 0.29.1, and Apple MPS.
+
+```bash
+conda activate adversarial-yolo
+cd /Users/ripple/pyproject/adversarial-yolo
+python train_patch.py paper_obj --device mps --batch-size 1 --epochs 1 --max-steps 1
+```
+
+Remove `--max-steps 1` to train a complete epoch. Set `--epochs 10` (or your
+chosen epoch count) for a longer run. `--device auto` selects MPS, then CUDA,
+then CPU; `--device cpu` forces CPU. macOS defaults to batch size 1 and
+`--workers 0`. `--no-tensorboard` disables logging. View logs separately with:
+
+```bash
+tensorboard --logdir runs
+```
+
+The patch is saved after each epoch (or at the `--max-steps` limit) to
+`saved_patches/mac_patch.png`; use `--output` to choose another destination.
+This PNG is the generated patch, not a resumable optimizer checkpoint.
+The detector is frozen while gradients still flow through it to the patch.
+Grid sampling explicitly uses `align_corners=True` to preserve the historical
+PyTorch coordinate convention. Unsupported MPS operations may fall back to CPU.
+
+YOLOv2 weights and the original INRIA images with matching repository labels
+are required. Use `curl -fL` when downloading weights to follow redirects.
+A short optimization test establishes execution compatibility, not reproduction
+of the paper's final attack performance. Legacy evaluation scripts, notebooks,
+and the standalone `load_data.py` demo retain their original CUDA assumptions.
